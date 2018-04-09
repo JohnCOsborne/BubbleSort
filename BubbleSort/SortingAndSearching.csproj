@@ -41,9 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\Implementation\BinarySearcher.cs" />
+    <Compile Include="Model\Implementation\BubleSorter.cs" />
+    <Compile Include="Model\Interfaces\ISearcher.cs" />
+    <Compile Include="Model\Interfaces\ISorter.cs" />
     <Compile Include="ListProvider.cs" />
-    <Compile Include="Person.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="Model\Person.cs" />
+    <Compile Include="View\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -51,6 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="names.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controller\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

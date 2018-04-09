@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
-using System.Collections;
+using System.Linq;
 
-namespace BubbleSort
+namespace SortingAndSearching
 {
     /// <summary>
     /// Provides a list and the abilities to search and sort it
@@ -15,14 +12,9 @@ namespace BubbleSort
     {
         //Private fields
         private StreamReader fileReader;
-        private List<Person> theListOfNames;
 
         #region Properties
-        public List<Person> TheList
-        {
-            get { return this.theListOfNames; }
-            set { theListOfNames = value; }
-        }
+        public List<Person> TheList{ get; set;}
         #endregion
 
         public ListProvider()
@@ -31,9 +23,9 @@ namespace BubbleSort
         }
 
         /// <summary>
-        /// I wish C# had a Scanner class :/. How different are these languages really?
+        /// Constructor for ListProvider
         /// </summary>
-        /// <param name="fileName"></param>
+        /// <param name="fileName">The file path to read the names from</param>
         public ListProvider(string fileName)
         {
             TheList = new List<Person>();
@@ -50,11 +42,10 @@ namespace BubbleSort
             }
         }
 
-
         /// <summary>
         /// Sorts the list alphabetically using bubble sort
         /// </summary>
-        public void sortWithBubbleSortAlphabetically()
+        public void SortWithBubbleSortAlphabetically()
         {
             bool finished = false;
             int changes = 0;
@@ -82,25 +73,24 @@ namespace BubbleSort
         /// </summary>
         /// <param name="firstName">The first name in question</param>
         /// <returns>The items index</returns>
-        /// <remarks>In C# a irrational(floating point) number is always rounded down</remarks>
+        /// <remarks>In C#, an irrational(floating point) number is always rounded down</remarks>
         public int BinarySearch(string firstName)
         {
             int listSize = TheList.Count();
-            int middle = listSize / 2 - 1;
+            int middle = (listSize / 2);
             int floor = 0;
             int ceiling = listSize - 1;
-            string[] names = TheList.Select(x => x.FirstName).ToArray<string>();
+            string[] names = TheList.Select(x => x.FirstName).ToArray();
 
             bool found = false;
 
             while (!found)
             {
-                int equalityNumber = String.Compare(names[middle], firstName, StringComparison.CurrentCultureIgnoreCase);
+                int equalityNumber = string.Compare(names[middle], firstName, StringComparison.CurrentCultureIgnoreCase);
                 if ((ceiling - floor) == 1)
                 {
-                    return (String.Compare(names[ceiling], firstName, StringComparison.CurrentCultureIgnoreCase) == 0 ? ceiling : floor);    
+                    return (string.Compare(names[ceiling], firstName, StringComparison.CurrentCultureIgnoreCase) == 0 ? ceiling : floor);    
                 }
-
                 if (equalityNumber == 0)
                 {
                     found = true;
@@ -109,15 +99,36 @@ namespace BubbleSort
                 else if (equalityNumber > 0)
                 {
                     ceiling = middle - 1;
-                    middle = ceiling / 2;
                 }
                 else
                 {
                     floor = middle + 1;
-                    middle = floor + ((ceiling - floor) / 2);
+                }
+
+                if ((ceiling - floor) < 0) break;
+
+                middle = (ceiling + floor) / 2;
+            }
+            return -1;
+        }
+
+        public void QuickSort()
+        {
+            //choose pivot then sort around pivot
+            string pivot = TheList.Last().FirstName;
+            List<string> newList = new List<string>(45);
+            newList[6] = "";
+            foreach(string name in TheList.Select(x => x.FirstName))
+            {
+                int equalityNumber = String.Compare(name, pivot, StringComparison.CurrentCultureIgnoreCase);
+                if (equalityNumber > 0)
+                {
+                    //put name to the right of pivot
+                }else
+                {
+                    //put name to the left of pivot
                 }
             }
-            return 1;
         }
     }
 }
