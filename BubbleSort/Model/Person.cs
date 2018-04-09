@@ -1,16 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace BubbleSort
+namespace SortingAndSearching
 {
     public class Person : IComparable
     {
-        private string p1;
-        private string p2;
-
         public String FirstName { get; set; }
         public String LastName {get; set;}
         public String PhoneNumber { get; set; }
